@@ -1,0 +1,112 @@
+<?php include_once("./views/layout/header.php"); ?>
+
+<h1 class="h1">Liste des Cours</h1>
+
+<section class="section">
+</section>
+
+<!-- <?php
+
+    echo "<pre>";
+    // print_r($postsAndCategories);
+    echo "</pre>";
+
+    $post = [];
+    $post["categories"] = [];
+
+    $idThen = $postsAndCategories[count($postsAndCategories)-3]["id"];
+    $nameThen = $postsAndCategories[count($postsAndCategories)-3]["name"];
+    $contentThen = $postsAndCategories[count($postsAndCategories)-3]["content"];
+    $created_atThen = $postsAndCategories[count($postsAndCategories)-3]["created_at"];
+    $categoryThen = $postsAndCategories[count($postsAndCategories)-3]["category"];
+
+    foreach($postsAndCategories as $postAndCategory){
+
+        $idNow = $postAndCategory["id"]; 
+        $nameNow = $postAndCategory["name"]; 
+        $contentNow = $postAndCategory["content"];
+        $created_atNow = $postAndCategory["created_at"];
+        $categoryNow = $postAndCategory["category"];
+
+        if($idThen == $idNow){
+            // $post["categories"][] = $post["categories"][$categoryNow];
+            $post["categories"][] = $categoryNow;
+        }
+
+        if($idThen != $idNow){ 
+
+            $post = [
+
+                "id" => $idThen, 
+                "name" => $nameThen, 
+                "content" => $contentThen, 
+                "created_at" => $created_atThen, 
+            ];
+
+            $idThen = $idNow;
+            $nameThen = $nameNow;
+            $contentThen = $contentNow;
+            $created_atThen = $created_atNow;
+
+            echo "
+                <div class='cards__container'>
+                    <div class='card'>
+
+                        <span class='card__title'>".$post["name"]."</span>
+
+                        <span class='card__categories'>
+            ";
+                        if($post["categories"]){
+                            echo"
+                                <span class='btn btn--warning'>".$post["categories"]."</span>
+                            ";
+                        }
+            echo "
+                        </span>
+
+                        <a href='index.php?page=course&post_id=".$post["id"]."' class='btn btn--primary'>Voir</a>
+
+                    </div>
+                </div>
+            ";
+        }
+
+        echo "<pre>";
+        // print_r($post);
+        echo "</pre>";
+    }
+?> -->
+
+<!-- content card -->
+
+<div class="cards__container">
+    <?php
+        foreach($postsAndCategories as $postAndCategories){
+
+            if($postAndCategories["category"] == "Cours"){
+
+                echo "
+                    <div class='card'>
+
+                        <span class='card__title'>".$postAndCategories["name"]."</span>
+
+                        <span class='card__categories'>
+                ";
+                        if($postAndCategories["category"]){
+                            echo"
+                                <span class='btn btn--warning'>".$postAndCategories["category"]."</span>
+                            ";
+                        }
+                echo "
+                        </span>
+
+                        <a href='index.php?page=course&post_id=".$postAndCategories["id"]."' class='btn btn--primary'>Voir</a>
+
+                    </div>
+                ";
+            }
+        }
+    ?>
+</div>
+
+<?php include_once("./views/layout/footer.php"); ?>
